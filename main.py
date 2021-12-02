@@ -1,7 +1,7 @@
 import pygame
 import math
 from config import *
-from map import world_map
+from map import world_map, mini_map
 
 
 class Player:
@@ -57,6 +57,16 @@ class Drawing:
         display_fps = str(int(clock.get_fps()))
         render = self.font.render(display_fps, 0, RED)
         self.screen.blit(render, FPS_POS)
+
+    def mini_map(self, player):
+        self.screen_map.fill(BLACK)
+        map_x, map_y = player.x // MAP_SCALE, player.y // MAP_SCALE
+        pygame.draw.line(self.screen_map, RED, (map_x, map_y), (map_x + 12 * math.cos(player.angle),
+                                                     map_y + 12 * math.sin(player.angle)))
+        pygame.draw.circle(self.screen_map, YELOW, (map_x, map_y), 5)
+        for x, y in mini_map:
+            pygame.draw.rect(self.screen_map, GRAY, (x, y, MAP_TILE, MAP_TILE))
+        self.screen.blit(self.screen_map, (0, HEIGHT - HEIGHT // MAP_SCALE))
 
 
 def squareangle(a, b):
