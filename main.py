@@ -68,7 +68,7 @@ if __name__ == "__main__":
         screen.fill(BLACK)
 
         pygame.draw.rect(screen, BLUE, (0, 0, WIDTH, HALF_HEIGHT))
-        pygame.draw.rect(screen, GRAY, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
+        pygame.draw.rect(screen, BROWN, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
 
         ray_castion(screen, player.pos, player.angle)
 
