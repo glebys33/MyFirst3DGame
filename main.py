@@ -44,7 +44,6 @@ def ray_castion(screen, player_pos, player_angle):
         for depth in range(MAX_DEPHH):
             x = xo + depth * cos_a
             y = yo + depth * sin_a
-            # pygame.draw.line(screen, GRAY, player_pos, (x, y), 2)
             if (x // TILE * TILE, y // TILE * TILE) in world_map:
                 depth *= math.cos(player_angle - cur_angle)
                 proj_height = PROJ_COEFF / depth
@@ -68,13 +67,10 @@ if __name__ == "__main__":
         player.movement()
         screen.fill(BLACK)
 
-        ray_castion(screen, player.pos, player.angle)
+        pygame.draw.rect(screen, BLUE, (0, 0, WIDTH, HALF_HEIGHT))
+        pygame.draw.rect(screen, GRAY, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
 
-        #pygame.draw.circle(screen, GREEN, player.pos, 12)
-        #pygame.draw.line(screen, GREEN, player.pos, (player.x + WIDTH * math.cos(player.angle),
-        #                                             player.y + WIDTH * math.sin(player.angle)))
-        #for x,y in world_map:
-        #    pygame.draw.rect(screen, GRAY, (x, y, TILE, TILE), 2)
+        ray_castion(screen, player.pos, player.angle)
 
         pygame.display.flip()
         clock.tick(FPS)
