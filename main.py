@@ -4,6 +4,7 @@ from config import *
 from map import world_map, mini_map
 
 
+# Игрок
 class Player:
     def __init__(self):
         self.x, self.y = player_pos
@@ -11,7 +12,7 @@ class Player:
 
     @property
     def pos(self):
-        return (self.x, self.y)
+        return self.x, self.y
 
     def movement(self):
         # Предвижение игрока
@@ -59,6 +60,7 @@ class Drawing:
         self.screen.blit(render, FPS_POS)
 
     def mini_map(self, player):
+        # Отрисовка миникарты
         self.screen_map.fill(BLACK)
         map_x, map_y = player.x // MAP_SCALE, player.y // MAP_SCALE
         pygame.draw.line(self.screen_map, RED, (map_x, map_y), (map_x + 12 * math.cos(player.angle),
